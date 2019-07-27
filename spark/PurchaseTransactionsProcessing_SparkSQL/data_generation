@@ -1,0 +1,283 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd\n",
+    "import numpy as np\n",
+    "import string\n",
+    "import random"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Customers"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>ID</th>\n",
+       "      <th>Name</th>\n",
+       "      <th>Age</th>\n",
+       "      <th>CountryCode</th>\n",
+       "      <th>Salary</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>1</td>\n",
+       "      <td>tykxezokqgusiz</td>\n",
+       "      <td>30</td>\n",
+       "      <td>20</td>\n",
+       "      <td>8556046.0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>2</td>\n",
+       "      <td>mvjgvoemaoousk</td>\n",
+       "      <td>31</td>\n",
+       "      <td>8</td>\n",
+       "      <td>4711816.0</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   ID            Name  Age  CountryCode     Salary\n",
+       "0   1  tykxezokqgusiz   30           20  8556046.0\n",
+       "1   2  mvjgvoemaoousk   31            8  4711816.0"
+      ]
+     },
+     "execution_count": 9,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "import random\n",
+    "import pandas as pd\n",
+    "import numpy as np\n",
+    "import string\n",
+    "\n",
+    "# datar = open('Customers.txt','wt')\n",
+    "\n",
+    "list1 = []\n",
+    "list2 = []\n",
+    "list3 = []\n",
+    "list4 = []\n",
+    "list5 = []\n",
+    "for i in range(50000):\n",
+    "    list1.append(i + 1)\n",
+    "    list2.append(''.join(random.choice(string.ascii_lowercase) for j in range(np.random.randint(10,20))))\n",
+    "    list3.append(random.randint(10,70))\n",
+    "    list4.append(random.randint(1,100))\n",
+    "    list5.append( float(random.randint(100.0,10000000.0)) )\n",
+    "\n",
+    "\n",
+    "df_customers = pd.DataFrame({'ID':list1,'Name': list2,'Age':list3,\n",
+    "                             'CountryCode':list4,'Salary':list5})\n",
+    "\n",
+    "df_customers.head(2)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "df_customers.to_csv('Customers1.csv',index = False)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Purchase"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>TransID</th>\n",
+       "      <th>CustID</th>\n",
+       "      <th>TransTotal</th>\n",
+       "      <th>TransNumItems</th>\n",
+       "      <th>TransDesc</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>1</td>\n",
+       "      <td>12059</td>\n",
+       "      <td>221.0</td>\n",
+       "      <td>8</td>\n",
+       "      <td>ikhbtiihioyrpvmlzyaerssubg</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>2</td>\n",
+       "      <td>37156</td>\n",
+       "      <td>684.0</td>\n",
+       "      <td>9</td>\n",
+       "      <td>dvfsnvhugjrofssufxer</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   TransID  CustID  TransTotal  TransNumItems                   TransDesc\n",
+       "0        1   12059       221.0              8  ikhbtiihioyrpvmlzyaerssubg\n",
+       "1        2   37156       684.0              9        dvfsnvhugjrofssufxer"
+      ]
+     },
+     "execution_count": 6,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "list1 = []\n",
+    "list2 = []\n",
+    "list3 = []\n",
+    "list4 = []\n",
+    "list5 = []\n",
+    "for i in range(5000000):\n",
+    "    list1.append(i + 1)\n",
+    "    list2.append(random.randint(1,50000))\n",
+    "    list3.append( float(random.randint(10,1000)) )\n",
+    "    list4.append(random.randint(1,10))\n",
+    "    list5.append(''.join(random.choice(string.ascii_lowercase) for j in range(np.random.randint(20,50))))\n",
+    "\n",
+    "\n",
+    "df_purchase = pd.DataFrame({'TransID':list1,'CustID': list2,'TransTotal':list3,\n",
+    "                            'TransNumItems':list4,'TransDesc':list5})\n",
+    "\n",
+    "df_purchase.head(2)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "df_purchase.to_csv('Purchases1.csv',index = False)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "df_cus_purchase_cnt = df_customers.merge(df_purchase, left_on = 'ID', \n",
+    "                        right_on = 'CustID', how = 'left').groupby('ID')['Name'].count()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "100.0"
+      ]
+     },
+     "execution_count": 12,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df_cus_purchase_cnt.mean()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.6.8"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
